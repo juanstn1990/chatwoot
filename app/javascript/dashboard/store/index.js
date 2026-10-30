@@ -32,6 +32,7 @@ import customRole from './modules/customRole';
 import customViews from './modules/customViews';
 import dashboardApps from './modules/dashboardApps';
 import draftMessages from './modules/draftMessages';
+import funnels from './modules/funnels';
 import globalConfig from 'shared/store/globalConfig';
 import inboxAssignableAgents from './modules/inboxAssignableAgents';
 import inboxes from './modules/inboxes';
@@ -40,6 +41,7 @@ import integrations from './modules/integrations';
 import labels from './modules/labels';
 import macros from './modules/macros';
 import notifications from './modules/notifications';
+import opportunities from './modules/opportunities';
 import portals from './modules/helpCenterPortals';
 import reports from './modules/reports';
 import sla from './modules/sla';
@@ -99,6 +101,7 @@ export default createStore({
     customViews,
     dashboardApps,
     draftMessages,
+    funnels,
     globalConfig,
     inboxAssignableAgents,
     inboxes,
@@ -107,6 +110,7 @@ export default createStore({
     labels,
     macros,
     notifications,
+    opportunities,
     portals,
     reports,
     sla,

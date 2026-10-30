@@ -106,6 +106,10 @@ en:
         invalid: is not a valid timezone
       support_email:
         invalid: is not a valid email address
+    opportunities:
+      stage_mismatch: must belong to the same funnel
+    funnel_stages:
+      has_opportunities: Move or delete its opportunities before removing this stage
     validations:
       presence: must not be blank
     webhook:

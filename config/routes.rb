@@ -369,6 +369,15 @@ Rails.application.routes.draw do
           end
           resources :labels, only: [:index, :show, :create, :update, :destroy]
 
+          resources :funnels, only: [:index, :show, :create, :update, :destroy] do
+            scope module: :funnels do
+              resources :stages, only: [:create, :update, :destroy]
+            end
+          end
+          resources :opportunities, only: [:index, :show, :create, :update, :destroy] do
+            patch :move, on: :member
+          end
+
           resources :notifications, only: [:index, :update, :destroy] do
             collection do
               post :read_all

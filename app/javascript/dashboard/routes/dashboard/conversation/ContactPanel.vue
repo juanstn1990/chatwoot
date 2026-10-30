@@ -11,6 +11,7 @@ import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 
 import AccordionItem from 'dashboard/components/Accordion/AccordionItem.vue';
 import ContactConversations from './ContactConversations.vue';
+import KanbanOpportunities from './KanbanOpportunities.vue';
 import ConversationAction from './ConversationAction.vue';
 import ConversationParticipant from './ConversationParticipant.vue';
 import ContactInfo from './contact/ContactInfo.vue';
@@ -247,6 +248,20 @@ onMounted(() => {
               "
             >
               <ContactConversations
+                :contact-id="contact.id"
+                :conversation-id="conversationId"
+              />
+            </AccordionItem>
+          </div>
+          <div v-else-if="element.name === 'kanban_opportunities'">
+            <AccordionItem
+              v-if="contact.id"
+              :title="$t('KANBAN.SIDEBAR.TITLE')"
+              :is-open="isContactSidebarItemOpen('is_kanban_open')"
+              compact
+              @toggle="value => toggleSidebarUIState('is_kanban_open', value)"
+            >
+              <KanbanOpportunities
                 :contact-id="contact.id"
                 :conversation-id="conversationId"
               />

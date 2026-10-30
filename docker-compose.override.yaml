@@ -1,0 +1,29 @@
+# Ajustes locales: puertos que no chocan con los otros stacks de la maquina
+services:
+  rails:
+    ports: !override
+      - '127.0.0.1:3001:3000'
+
+  vite:
+    ports: !override
+      - '127.0.0.1:3036:3036'
+    environment:
+      # Sin esto vite escucha solo en ::1 dentro del contenedor y el navegador no lo alcanza.
+      VITE_RUBY_HOST: 0.0.0.0
+
+  postgres:
+    ports: !override
+      - '127.0.0.1:5434:5432'
+    environment:
+      POSTGRES_DB: chatwoot_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  redis:
+    ports: !override
+      - '127.0.0.1:6380:6379'
+
+  mailhog:
+    ports: !override
+      - '127.0.0.1:1025:1025'
+      - '127.0.0.1:8025:8025'

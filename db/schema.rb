@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_30_213013) do
   # These extensions should be enabled to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
@@ -521,8 +521,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_captain_faq_suggestions_on_account_id"
     t.index ["account_id", "assistant_id", "status", "language"], name: "idx_cap_faq_suggestions_on_account_assistant_status_language"
+    t.index ["account_id"], name: "index_captain_faq_suggestions_on_account_id"
     t.index ["assistant_id"], name: "index_captain_faq_suggestions_on_assistant_id"
     t.index ["embedding"], name: "vector_idx_captain_faq_suggestions_embedding", opclass: :vector_cosine_ops, using: :ivfflat
   end
@@ -765,8 +765,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.jsonb "phone_number_health", default: {}, null: false
     t.datetime "phone_number_health_checked_at"
     t.string "phone_number_health_error", limit: 500
-    t.index ["phone_number_health_checked_at"], name: "index_channel_whatsapp_on_phone_number_health_checked_at"
     t.index ["phone_number"], name: "index_channel_whatsapp_on_phone_number", unique: true
+    t.index ["phone_number_health_checked_at"], name: "index_channel_whatsapp_on_phone_number_health_checked_at"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -1102,7 +1102,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.index ["copilot_tool_call_id"], name: "index_copilot_runs_on_copilot_tool_call_id", unique: true
     t.index ["source_run_id"], name: "index_copilot_runs_on_source_run_id"
     t.index ["status"], name: "index_copilot_runs_awaiting_approval", where: "((status)::text = 'awaiting_approval'::text)"
-    t.index ["status"], name: "index_copilot_runs_claimable", where: "((status)::text = ANY ((ARRAY['queued'::character varying, 'running'::character varying])::text[]))"
+    t.index ["status"], name: "index_copilot_runs_claimable", where: "((status)::text = ANY (ARRAY[('queued'::character varying)::text, ('running'::character varying)::text]))"
     t.index ["user_id"], name: "index_copilot_runs_on_user_id"
   end
 
@@ -1291,10 +1291,10 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "inbox_id"
-    t.index ["account_id", "name", "template_type", "locale"], name: "index_email_templates_on_account_scope", unique: true, where: "(account_id IS NOT NULL) AND (inbox_id IS NULL)"
+    t.index ["account_id", "name", "template_type", "locale"], name: "index_email_templates_on_account_scope", unique: true, where: "((account_id IS NOT NULL) AND (inbox_id IS NULL))"
     t.index ["inbox_id", "name", "template_type", "locale"], name: "index_email_templates_on_inbox_scope", unique: true, where: "(inbox_id IS NOT NULL)"
     t.index ["inbox_id"], name: "index_email_templates_on_inbox_id"
-    t.index ["name", "template_type", "locale"], name: "index_email_templates_on_installation_scope", unique: true, where: "(account_id IS NULL) AND (inbox_id IS NULL)"
+    t.index ["name", "template_type", "locale"], name: "index_email_templates_on_installation_scope", unique: true, where: "((account_id IS NULL) AND (inbox_id IS NULL))"
   end
 
   create_table "folders", force: :cascade do |t|
@@ -1303,6 +1303,29 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "funnel_stages", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "color", default: "#1f93ff", null: false
+    t.integer "position", default: 0, null: false
+    t.bigint "funnel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "label_id"
+    t.index ["funnel_id", "position"], name: "index_funnel_stages_on_funnel_id_and_position"
+    t.index ["label_id"], name: "index_funnel_stages_on_label_id"
+  end
+
+  create_table "funnels", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "currency", default: "USD", null: false
+    t.integer "position", default: 0, null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "position"], name: "index_funnels_on_account_id_and_position"
   end
 
   create_table "inbox_assignment_policies", force: :cascade do |t|
@@ -1527,6 +1550,29 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_19_143116) do
     t.index ["secondary_actor_type", "secondary_actor_id"], name: "uniq_secondary_actor_per_account_notifications"
     t.index ["user_id", "account_id", "snoozed_until", "read_at"], name: "idx_notifications_performance"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "opportunities", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.decimal "value", precision: 15, scale: 2, default: "0.0", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "position", default: 0, null: false
+    t.date "expected_close_on"
+    t.bigint "account_id", null: false
+    t.bigint "funnel_id", null: false
+    t.bigint "funnel_stage_id", null: false
+    t.bigint "contact_id"
+    t.bigint "assignee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "conversation_id"
+    t.index ["account_id", "status"], name: "index_opportunities_on_account_id_and_status"
+    t.index ["assignee_id"], name: "index_opportunities_on_assignee_id"
+    t.index ["contact_id"], name: "index_opportunities_on_contact_id"
+    t.index ["conversation_id"], name: "index_opportunities_on_conversation_id"
+    t.index ["funnel_id"], name: "index_opportunities_on_funnel_id"
+    t.index ["funnel_stage_id", "position"], name: "index_opportunities_on_funnel_stage_id_and_position"
   end
 
   create_table "platform_app_permissibles", force: :cascade do |t|

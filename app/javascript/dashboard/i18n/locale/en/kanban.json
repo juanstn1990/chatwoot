@@ -1,0 +1,83 @@
+{
+  "KANBAN": {
+    "HEADER": "Kanban",
+    "FUNNEL_LABEL": "Funnel",
+    "OPEN_VALUE": "Open value",
+    "NEW_OPPORTUNITY": "New opportunity",
+    "NEW_FUNNEL": "New funnel",
+    "EMPTY_STATE": {
+      "TITLE": "No funnels yet",
+      "SUBTITLE": "Create a funnel to start tracking your sales opportunities.",
+      "ACTION": "Create funnel"
+    },
+    "COLUMN": {
+      "EMPTY": "No opportunities",
+      "COUNT": "{count} opportunities"
+    },
+    "FUNNEL_FORM": {
+      "TITLE": "Create funnel",
+      "NAME_LABEL": "Name",
+      "NAME_PLACEHOLDER": "Sales pipeline",
+      "DESCRIPTION_LABEL": "Description",
+      "DESCRIPTION_PLACEHOLDER": "What this funnel is used for",
+      "CURRENCY_LABEL": "Currency",
+      "CURRENCY_PLACEHOLDER": "USD",
+      "SUBMIT": "Create",
+      "CANCEL": "Cancel",
+      "SUCCESS_MESSAGE": "Funnel created successfully",
+      "ERROR_MESSAGE": "Could not create the funnel"
+    },
+    "OPPORTUNITY_FORM": {
+      "CREATE_TITLE": "New opportunity",
+      "EDIT_TITLE": "Edit opportunity",
+      "NAME_LABEL": "Name",
+      "NAME_PLACEHOLDER": "Acme renewal",
+      "VALUE_LABEL": "Value",
+      "VALUE_PLACEHOLDER": "0.00",
+      "STAGE_LABEL": "Stage",
+      "DESCRIPTION_LABEL": "Notes",
+      "DESCRIPTION_PLACEHOLDER": "Context about this deal",
+      "EXPECTED_CLOSE_LABEL": "Expected close date",
+      "STATUS_LABEL": "Status",
+      "STATUS_OPEN": "Open",
+      "STATUS_WON": "Won",
+      "STATUS_LOST": "Lost",
+      "SUBMIT": "Save",
+      "CANCEL": "Cancel",
+      "SUCCESS_MESSAGE": "Opportunity saved successfully",
+      "ERROR_MESSAGE": "Could not save the opportunity",
+      "CONTACT_LABEL": "Contact",
+      "CONTACT_PLACEHOLDER": "Link a contact",
+      "CONTACT_SEARCH": "Search contacts",
+      "CONTACT_EMPTY": "No contacts found"
+    },
+    "DELETE_OPPORTUNITY": {
+      "TITLE": "Delete opportunity",
+      "DESCRIPTION": "This will permanently remove the opportunity. This action cannot be undone.",
+      "CONFIRM": "Delete",
+      "CANCEL": "Cancel",
+      "SUCCESS_MESSAGE": "Opportunity deleted successfully",
+      "ERROR_MESSAGE": "Could not delete the opportunity"
+    },
+    "SIDEBAR": {
+      "TITLE": "Opportunities",
+      "EMPTY": "No opportunities for this contact yet.",
+      "ADD": "New opportunity"
+    },
+    "CARD": {
+      "NO_CONTACT": "No contact",
+      "OPEN_CONVERSATION": "Open conversation"
+    },
+    "STAGES": {
+      "BUTTON": "Stages",
+      "TITLE": "Manage stages",
+      "DESCRIPTION": "Rename, recolor and reorder columns. Link a label so applying it to a conversation moves the contact into that stage.",
+      "LABEL": "Label",
+      "NO_LABEL": "No label",
+      "NEW_PLACEHOLDER": "New stage name",
+      "ADD": "Add stage",
+      "CLOSE": "Done",
+      "DELETE_ERROR": "Could not delete the stage"
+    }
+  }
+}
