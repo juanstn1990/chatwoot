@@ -25,7 +25,7 @@ const query = ref('');
 const groups = ref([]);
 const selected = ref(null);
 const title = ref('');
-const fill = ref(true);
+const fill = ref(false);
 const isSearching = ref(false);
 const isSaving = ref(false);
 const errorMessage = ref('');
@@ -93,7 +93,7 @@ const open = nextMode => {
   groups.value = [];
   selected.value = null;
   title.value = '';
-  fill.value = true;
+  fill.value = false;
   errorMessage.value = '';
   dialogRef.value.open();
   search();

@@ -56,6 +56,18 @@ const unlink = async invitation => {
   }
 };
 
+const startHere = async invitation => {
+  // eslint-disable-next-line no-alert
+  if (!window.confirm(t('INVITA.START_HERE_CONFIRM'))) return;
+  try {
+    await InvitationsAPI.startHere(props.conversationId, invitation.id);
+    useAlert(t('INVITA.START_HERE_DONE'));
+    await fetchInvitations();
+  } catch (error) {
+    useAlert(errorOf(error));
+  }
+};
+
 // Recien creada, lo natural es llenarla con lo que ya se dijo en el chat.
 const onCreated = async ({ invitation, fill }) => {
   await fetchInvitations();
@@ -127,6 +139,14 @@ onMounted(fetchInvitations);
             @click="copyLink(invitation.multimedia)"
           >
             {{ t('INVITA.COPY_MEDIA_LINK') }}
+          </button>
+          <button
+            type="button"
+            class="text-n-slate-10 hover:underline"
+            :title="t('INVITA.START_HERE_HINT')"
+            @click="startHere(invitation)"
+          >
+            {{ t('INVITA.START_HERE') }}
           </button>
           <button
             type="button"

@@ -214,6 +214,7 @@ Rails.application.routes.draw do
                   delete :link, action: :unlink
                   post :propose
                   post :apply
+                  post :start_here
                 end
               end
               resources :assignments, only: [:create]

@@ -17,7 +17,7 @@
     "ERROR": "Something went wrong talking to Invita",
     "SOURCE": {
       "TITLE": "Create invitation",
-      "DESCRIPTION": "Choose what it is based on. Its design and content are copied; the link, guests and RSVPs start empty.",
+      "DESCRIPTION": "Choose what it is based on. Its design and content are copied; the link, guests and RSVPs start empty. Chat changes are read from now on, not from earlier history.",
       "SEARCH_PLACEHOLDER": "Search: rapunzel, lilac, wedding…",
       "SAMPLES": "Catalog samples",
       "TEMPLATES": "Saved templates",
@@ -25,7 +25,7 @@
       "NO_RESULTS": "Nothing matches.",
       "TITLE_LABEL": "Internal name",
       "TITLE_PLACEHOLDER": "Laura & Andrés wedding",
-      "FILL": "Fill it with what is already in the chat",
+      "FILL": "Also read what is already in the chat to fill it",
       "SUBMIT": "Create"
     },
     "LINK": {
@@ -58,6 +58,10 @@
       "APPLIED": "Changes applied to the invitation",
       "REVIEWED": "Conversation marked as reviewed",
       "REOPEN_CONFIRM": "This invitation is delivered. Move it to \"In progress\" and apply the changes?"
-    }
+    },
+    "START_HERE": "Read from here",
+    "START_HERE_HINT": "Treat what is already in the chat as reviewed; changes will be read from the next message.",
+    "START_HERE_CONFIRM": "Mark everything already in this conversation as reviewed? \"Apply changes\" will only read messages that arrive from now on.",
+    "START_HERE_DONE": "Done: changes will be read from here"
   }
 }

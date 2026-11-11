@@ -37,6 +37,10 @@ class InvitationsAPI extends ApiClient {
     return axios.delete(`${this.base(conversationId)}/${id}/link`);
   }
 
+  startHere(conversationId, id) {
+    return axios.post(`${this.base(conversationId)}/${id}/start_here`);
+  }
+
   propose(conversationId, id, { all = false, note = '' } = {}) {
     return axios.post(`${this.base(conversationId)}/${id}/propose`, {
       all: all || undefined,

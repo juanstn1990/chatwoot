@@ -17,7 +17,7 @@
     "ERROR": "Algo falló al hablar con Invita",
     "SOURCE": {
       "TITLE": "Crear invitación",
-      "DESCRIPTION": "Elige en cuál se basa. Se copia su diseño y su contenido; el enlace, los invitados y las confirmaciones nacen vacíos.",
+      "DESCRIPTION": "Elige en cuál se basa. Se copia su diseño y su contenido; el enlace, los invitados y las confirmaciones nacen vacíos. Los cambios del chat se leen desde ahora, no desde la historia anterior.",
       "SEARCH_PLACEHOLDER": "Buscar: rapunzel, lila, boda…",
       "SAMPLES": "Muestras del catálogo",
       "TEMPLATES": "Plantillas guardadas",
@@ -25,7 +25,7 @@
       "NO_RESULTS": "No hay nada con eso.",
       "TITLE_LABEL": "Nombre interno",
       "TITLE_PLACEHOLDER": "Boda Laura y Andrés",
-      "FILL": "Llenarla con lo que ya hay en el chat",
+      "FILL": "Leer también lo que ya hay en el chat para llenarla",
       "SUBMIT": "Crear"
     },
     "LINK": {
@@ -58,6 +58,10 @@
       "APPLIED": "Cambios aplicados a la invitación",
       "REVIEWED": "Conversación marcada como revisada",
       "REOPEN_CONFIRM": "Esta invitación está entregada. ¿Pasarla a «En curso» y aplicar los cambios?"
-    }
+    },
+    "START_HERE": "Leer desde aquí",
+    "START_HERE_HINT": "Da por revisado lo que ya hay en el chat; los cambios se leerán desde el próximo mensaje.",
+    "START_HERE_CONFIRM": "¿Dar por revisado todo lo que ya hay en esta conversación? «Aplicar cambios» solo leerá los mensajes que lleguen desde ahora.",
+    "START_HERE_DONE": "Listo: se leerán los cambios desde aquí"
   }
 }

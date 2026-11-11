@@ -5,8 +5,11 @@
 # sabe y Invita no: quien es el agente, cual es la conversacion y que se dijo.
 class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Accounts::Conversations::BaseController
   MESSAGE_LIMIT = 400
+  # Las notas que deja esta integracion empiezan asi, para no mandarselas
+  # al modelo como si fueran algo que dijo el cliente o el agente.
+  NOTE_PREFIX = '[Invita] '.freeze
 
-  before_action :ensure_linked, only: [:propose, :apply]
+  before_action :ensure_linked, only: [:propose, :apply, :start_here]
   rescue_from Invita::Client::Error, with: :render_invita_error
 
   def index
@@ -28,7 +31,8 @@ class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Account
       'invitaciones',
       link_params.merge(
         titulo: params[:title].to_s,
-        origen: { tipo: params.dig(:origin, :type), id: params.dig(:origin, :id) }
+        origen: { tipo: params.dig(:origin, :type), id: params.dig(:origin, :id) },
+        desde: last_message_id
       )
     )
     private_note("Invitación creada: #{result.dig('invitacion', 'titulo')} (parte de #{result['parteDe']})\n#{result.dig('invitacion', 'editor')}")
@@ -36,7 +40,10 @@ class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Account
   end
 
   def link
-    result = client.put("invitaciones/#{invitation_id}/vinculo", link_params.merge(mover: params[:move].present?))
+    result = client.put(
+      "invitaciones/#{invitation_id}/vinculo",
+      link_params.merge(mover: params[:move].present?, desde: last_message_id)
+    )
     render json: result
   end
 
@@ -45,6 +52,14 @@ class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Account
     return if performed?
 
     render json: client.delete("invitaciones/#{invitation_id}/vinculo")
+  end
+
+  # Lo que ya hay en la conversacion se da por revisado: «aplicar cambios»
+  # leera solo lo que llegue despues de este punto.
+  def start_here
+    result = client.post("invitaciones/#{invitation_id}/aplicar", { cambios: [], hasta: last_message_id })
+    private_note("Desde aquí se leen los cambios para «#{result.dig('invitacion', 'titulo')}».")
+    render json: result
   end
 
   def propose
@@ -96,13 +111,22 @@ class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Account
     render json: { error: 'Esa invitación no está enlazada a esta conversación.' }, status: :forbidden
   end
 
+  def chat_messages
+    @conversation.messages.where.not(message_type: :activity)
+  end
+
+  # El ultimo mensaje que hay ahora: desde ahi se empieza a leer.
+  def last_message_id
+    chat_messages.maximum(:id)
+  end
+
   # La conversacion tal como la necesita Invita. Las notas privadas van
-  # tambien: es donde el agente apunta lo que se hablo por telefono.
+  # tambien: es donde el agente apunta lo que se hablo por telefono. Las que
+  # deja esta integracion no: son registro, no pedidos.
   def transcript
-    @conversation.messages
-                 .where.not(message_type: :activity)
-                 .includes(:attachments)
+    chat_messages.includes(:attachments)
                  .reorder(id: :desc).limit(MESSAGE_LIMIT).to_a.reverse
+                 .reject { |message| message.private? && message.content.to_s.start_with?(NOTE_PREFIX) }
                  .map do |message|
       {
         id: message.id,
@@ -128,7 +152,7 @@ class Api::V1::Accounts::Conversations::InvitationsController < Api::V1::Account
   end
 
   def private_note(content)
-    Messages::MessageBuilder.new(Current.user, @conversation, { content: content, private: true }).perform
+    Messages::MessageBuilder.new(Current.user, @conversation, { content: "#{NOTE_PREFIX}#{content}", private: true }).perform
   rescue StandardError => e
     # La nota es un registro; que falle no debe deshacer lo que ya se escribio.
     Rails.logger.warn("Invita: no se pudo dejar la nota privada: #{e.message}")
