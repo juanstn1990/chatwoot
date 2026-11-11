@@ -204,6 +204,18 @@ Rails.application.routes.draw do
                 end
               end
               resource :contact_info_request, only: [:show, :create]
+              resources :invitations, only: [:index, :create] do
+                collection do
+                  get :sources
+                  get :search
+                end
+                member do
+                  post :link
+                  delete :link, action: :unlink
+                  post :propose
+                  post :apply
+                end
+              end
               resources :assignments, only: [:create]
               resources :labels, only: [:create, :index]
               resource :participants, only: [:show, :create, :update, :destroy]

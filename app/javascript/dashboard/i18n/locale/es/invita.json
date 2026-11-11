@@ -1,0 +1,63 @@
+{
+  "INVITA": {
+    "SIDEBAR_TITLE": "Invitaciones",
+    "EMPTY": "Esta conversación todavía no tiene una invitación.",
+    "CREATE": "Crear invitación",
+    "LINK_EXISTING": "Vincular existente",
+    "APPLY_CHANGES": "Aplicar cambios del chat",
+    "OPEN_EDITOR": "Abrir editor",
+    "VIEW": "Ver",
+    "COPY_MEDIA_LINK": "Copiar enlace de fotos",
+    "UNLINK": "Desvincular",
+    "UNLINK_CONFIRM": "¿Desvincular «{title}» de esta conversación? La invitación no se borra.",
+    "COPIED": "Copiado",
+    "CREATED": "Invitación creada",
+    "LINKED": "Invitación vinculada",
+    "CANCEL": "Cancelar",
+    "ERROR": "Algo falló al hablar con Invita",
+    "SOURCE": {
+      "TITLE": "Crear invitación",
+      "DESCRIPTION": "Elige en cuál se basa. Se copia su diseño y su contenido; el enlace, los invitados y las confirmaciones nacen vacíos.",
+      "SEARCH_PLACEHOLDER": "Buscar: rapunzel, lila, boda…",
+      "SAMPLES": "Muestras del catálogo",
+      "TEMPLATES": "Plantillas guardadas",
+      "DESIGNS": "Diseños en blanco",
+      "NO_RESULTS": "No hay nada con eso.",
+      "TITLE_LABEL": "Nombre interno",
+      "TITLE_PLACEHOLDER": "Boda Laura y Andrés",
+      "FILL": "Llenarla con lo que ya hay en el chat",
+      "SUBMIT": "Crear"
+    },
+    "LINK": {
+      "TITLE": "Vincular una invitación existente",
+      "DESCRIPTION": "Busca la invitación por su nombre, su dirección o el teléfono del cliente.",
+      "SEARCH_PLACEHOLDER": "Buscar invitación…",
+      "ALREADY": "Ya está vinculada a una conversación",
+      "MOVE_CONFIRM": "Ya está vinculada a la conversación #{id}. ¿Moverla a esta?",
+      "SUBMIT": "Vincular"
+    },
+    "PROPOSAL": {
+      "TITLE": "Cambios para «{title}»",
+      "READING": "Leyendo la conversación…",
+      "NOTHING": "No hay nada nuevo que aplicar en el chat.",
+      "CHANGES": "Cambios propuestos",
+      "DOUBTS": "Dudas: hay que preguntarle",
+      "OTHERS": "Otros pedidos (a mano)",
+      "MISSING": "Datos que faltan",
+      "EMPTY_VALUE": "(vacío)",
+      "REPLY": "Mensaje para el cliente",
+      "REPLY_USE": "Poner en la respuesta",
+      "REPLY_COPY": "Copiar",
+      "REPLY_INSERTED": "Puesto en la caja de respuesta",
+      "NOTE_LABEL": "¿Algo que se dijo fuera del chat?",
+      "NOTE_PLACEHOLDER": "La mamá dijo por teléfono que el salón cambió a…",
+      "READ_ALL": "Leer toda la conversación, no solo lo nuevo",
+      "READ_AGAIN": "Volver a leer",
+      "APPLY": "Aplicar {count} cambio(s)",
+      "MARK_REVIEWED": "Marcar como revisado",
+      "APPLIED": "Cambios aplicados a la invitación",
+      "REVIEWED": "Conversación marcada como revisada",
+      "REOPEN_CONFIRM": "Esta invitación está entregada. ¿Pasarla a «En curso» y aplicar los cambios?"
+    }
+  }
+}

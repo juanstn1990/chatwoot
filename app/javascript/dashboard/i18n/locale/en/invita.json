@@ -1,0 +1,63 @@
+{
+  "INVITA": {
+    "SIDEBAR_TITLE": "Invitations",
+    "EMPTY": "This conversation has no invitation yet.",
+    "CREATE": "Create invitation",
+    "LINK_EXISTING": "Link existing",
+    "APPLY_CHANGES": "Apply changes from chat",
+    "OPEN_EDITOR": "Open editor",
+    "VIEW": "View",
+    "COPY_MEDIA_LINK": "Copy photo upload link",
+    "UNLINK": "Unlink",
+    "UNLINK_CONFIRM": "Unlink \"{title}\" from this conversation? The invitation is not deleted.",
+    "COPIED": "Copied",
+    "CREATED": "Invitation created",
+    "LINKED": "Invitation linked",
+    "CANCEL": "Cancel",
+    "ERROR": "Something went wrong talking to Invita",
+    "SOURCE": {
+      "TITLE": "Create invitation",
+      "DESCRIPTION": "Choose what it is based on. Its design and content are copied; the link, guests and RSVPs start empty.",
+      "SEARCH_PLACEHOLDER": "Search: rapunzel, lilac, wedding…",
+      "SAMPLES": "Catalog samples",
+      "TEMPLATES": "Saved templates",
+      "DESIGNS": "Blank designs",
+      "NO_RESULTS": "Nothing matches.",
+      "TITLE_LABEL": "Internal name",
+      "TITLE_PLACEHOLDER": "Laura & Andrés wedding",
+      "FILL": "Fill it with what is already in the chat",
+      "SUBMIT": "Create"
+    },
+    "LINK": {
+      "TITLE": "Link an existing invitation",
+      "DESCRIPTION": "Search by name, address or the customer's phone.",
+      "SEARCH_PLACEHOLDER": "Search invitation…",
+      "ALREADY": "Already linked to a conversation",
+      "MOVE_CONFIRM": "It is already linked to conversation #{id}. Move it here?",
+      "SUBMIT": "Link"
+    },
+    "PROPOSAL": {
+      "TITLE": "Changes for \"{title}\"",
+      "READING": "Reading the conversation…",
+      "NOTHING": "Nothing new to apply from the chat.",
+      "CHANGES": "Proposed changes",
+      "DOUBTS": "Doubts: ask the customer",
+      "OTHERS": "Other requests (manual)",
+      "MISSING": "Missing details",
+      "EMPTY_VALUE": "(empty)",
+      "REPLY": "Message for the customer",
+      "REPLY_USE": "Insert into reply",
+      "REPLY_COPY": "Copy",
+      "REPLY_INSERTED": "Inserted into the reply box",
+      "NOTE_LABEL": "Anything said outside the chat?",
+      "NOTE_PLACEHOLDER": "The mother said by phone that the venue changed to…",
+      "READ_ALL": "Read the whole conversation, not just what is new",
+      "READ_AGAIN": "Read again",
+      "APPLY": "Apply {count} change(s)",
+      "MARK_REVIEWED": "Mark as reviewed",
+      "APPLIED": "Changes applied to the invitation",
+      "REVIEWED": "Conversation marked as reviewed",
+      "REOPEN_CONFIRM": "This invitation is delivered. Move it to \"In progress\" and apply the changes?"
+    }
+  }
+}
